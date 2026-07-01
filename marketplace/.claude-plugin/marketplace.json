@@ -1,6 +1,6 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
-  "name": "soundcue-local",
+  "name": "soundcue",
   "description": "SoundCue audio review and local derived-version editing plugin for Codex.",
   "owner": {
     "name": "Superche"

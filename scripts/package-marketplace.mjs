@@ -67,7 +67,7 @@ await writeFile(join(outputRoot, 'README.md'), [
   '',
   '```bash',
   `codex plugin marketplace add ${outputRoot}`,
-  'codex plugin add soundcue@soundcue-local',
+    'codex plugin add soundcue@soundcue',
   '```',
   ''
 ].join('\n'))
@@ -77,6 +77,6 @@ console.log(JSON.stringify({
   pluginRoot,
   install: [
     `codex plugin marketplace add ${outputRoot}`,
-    'codex plugin add soundcue@soundcue-local'
+    'codex plugin add soundcue@soundcue'
   ]
 }, null, 2))

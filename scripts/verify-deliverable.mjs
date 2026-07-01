@@ -81,17 +81,17 @@ async function verifyMarketplaceInstall() {
   try {
     const env = { CODEX_HOME: codexHome }
     const addMarketplace = await run('codex', ['plugin', 'marketplace', 'add', marketplaceRoot, '--json'], { env })
-    assert(addMarketplace.stdout.includes('soundcue-local') || addMarketplace.stdout.includes(marketplaceRoot), 'Codex must add local SoundCue marketplace')
+    assert(addMarketplace.stdout.includes('soundcue') || addMarketplace.stdout.includes(marketplaceRoot), 'Codex must add local SoundCue marketplace')
 
     const available = await run('codex', ['plugin', 'list', '--available', '--json'], { env })
-    assert(available.stdout.includes('soundcue@soundcue-local'), 'SoundCue must be visible as an available marketplace plugin')
+    assert(available.stdout.includes('soundcue@soundcue'), 'SoundCue must be visible as an available marketplace plugin')
 
-    const install = await run('codex', ['plugin', 'add', 'soundcue@soundcue-local', '--json'], { env })
-    assert(install.stdout.includes('soundcue@soundcue-local'), 'Codex must install soundcue from the local marketplace')
+    const install = await run('codex', ['plugin', 'add', 'soundcue@soundcue', '--json'], { env })
+    assert(install.stdout.includes('soundcue@soundcue'), 'Codex must install soundcue from the local marketplace')
 
     const installed = await run('codex', ['plugin', 'list', '--json'], { env })
     assert(installed.stdout.includes('"enabled":true') || installed.stdout.includes('"enabled": true'), 'Installed SoundCue plugin must be enabled')
-    assert(installed.stdout.includes('soundcue@soundcue-local'), 'Installed plugin list must include soundcue@soundcue-local')
+    assert(installed.stdout.includes('soundcue@soundcue'), 'Installed plugin list must include soundcue@soundcue')
   } finally {
     if (!process.env.SOUNDCUE_KEEP_VERIFY_PROJECT) {
       await rm(codexHome, { recursive: true, force: true })

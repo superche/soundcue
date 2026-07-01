@@ -26,7 +26,7 @@ npm run package:marketplace
 
 ```bash
 codex plugin marketplace add ./build/soundcue-marketplace
-codex plugin add soundcue@soundcue-local
+codex plugin add soundcue@soundcue
 ```
 
 安装后，Codex 会获得 SoundCue 的 skill 和 MCP 工具。你可以在 Codex 对话里说：

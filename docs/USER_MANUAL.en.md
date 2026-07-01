@@ -26,7 +26,7 @@ Install it through the Codex plugin flow:
 
 ```bash
 codex plugin marketplace add ./build/soundcue-marketplace
-codex plugin add soundcue@soundcue-local
+codex plugin add soundcue@soundcue
 ```
 
 After installation, Codex can load the SoundCue skill and MCP tools. In a Codex conversation, ask:

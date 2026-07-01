@@ -46,7 +46,7 @@ Install through the Codex plugin flow:
 
 ```bash
 codex plugin marketplace add ./build/soundcue-marketplace
-codex plugin add soundcue@soundcue-local
+codex plugin add soundcue@soundcue
 ```
 
 This installs the SoundCue skills and MCP server configuration from the packaged plugin. The local UI is still served by the plugin package command:
