@@ -1,0 +1,82 @@
+#!/usr/bin/env node
+import { cp, mkdir, rm, writeFile } from 'node:fs/promises'
+import { dirname, join, resolve } from 'node:path'
+import { fileURLToPath } from 'node:url'
+
+const projectRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..')
+const outputRoot = resolve(process.argv[2] || join(projectRoot, 'build', 'soundcue-marketplace'))
+const pluginRoot = join(outputRoot, 'plugins', 'soundcue')
+
+const files = [
+  '.mcp.json',
+  'index.html',
+  'package-lock.json',
+  'package.json',
+  'README.md',
+  'vite.config.js'
+]
+
+const directories = [
+  '.codex-plugin',
+  'dist',
+  'docs',
+  'lib',
+  'mcp',
+  'scripts',
+  'skills',
+  'src'
+]
+
+const sampleFiles = [
+  'samples/podcastfillers/fixture_manifest.json',
+  'samples/podcastfillers/sample_rows.json',
+  'samples/podcastfillers/PodcastFillers.csv',
+  'samples/podcastfillers/clips/00020.wav'
+]
+
+await rm(outputRoot, { recursive: true, force: true })
+await mkdir(join(outputRoot, '.claude-plugin'), { recursive: true })
+await mkdir(pluginRoot, { recursive: true })
+
+await cp(
+  join(projectRoot, 'marketplace', '.claude-plugin', 'marketplace.json'),
+  join(outputRoot, '.claude-plugin', 'marketplace.json')
+)
+
+for (const file of files) {
+  await cp(join(projectRoot, file), join(pluginRoot, file))
+}
+
+for (const directory of directories) {
+  await cp(join(projectRoot, directory), join(pluginRoot, directory), {
+    recursive: true,
+    filter: (source) => !source.includes('/node_modules/')
+  })
+}
+
+for (const sample of sampleFiles) {
+  const target = join(pluginRoot, sample)
+  await mkdir(dirname(target), { recursive: true })
+  await cp(join(projectRoot, sample), target)
+}
+
+await writeFile(join(outputRoot, 'README.md'), [
+  '# SoundCue Marketplace',
+  '',
+  'Install locally:',
+  '',
+  '```bash',
+  `codex plugin marketplace add ${outputRoot}`,
+  'codex plugin add soundcue@soundcue-local',
+  '```',
+  ''
+].join('\n'))
+
+console.log(JSON.stringify({
+  marketplaceRoot: outputRoot,
+  pluginRoot,
+  install: [
+    `codex plugin marketplace add ${outputRoot}`,
+    'codex plugin add soundcue@soundcue-local'
+  ]
+}, null, 2))

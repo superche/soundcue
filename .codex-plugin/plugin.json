@@ -1,0 +1,34 @@
+{
+  "name": "soundcue",
+  "version": "0.1.0",
+  "description": "Codex plugin prototype for transcript-first audio notes, suggested edits, and linear audio version review.",
+  "author": {
+    "name": "Superche"
+  },
+  "license": "UNLICENSED",
+  "keywords": [
+    "audio",
+    "podcast",
+    "codex",
+    "annotation",
+    "edit",
+    "canvas"
+  ],
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "SoundCue",
+    "shortDescription": "Mark audio like a document and ask Codex to generate suggested edits.",
+    "longDescription": "A lightweight audio review panel for one Codex conversation per project. It keeps transcript notes, suggested edits, and linear v1/v2/v3 audio versions in local project files.",
+    "developerName": "Superche",
+    "category": "Productivity",
+    "capabilities": ["Interactive", "Read", "Write"],
+    "defaultPrompt": [
+      "Open the SoundCue project for this conversation",
+      "Create a suggested edit for the current audio note",
+      "Show the current audio project folder"
+    ],
+    "brandColor": "#4F8BFF",
+    "screenshots": []
+  }
+}

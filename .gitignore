@@ -1,0 +1,17 @@
+node_modules/
+dist/
+build/
+.vite/
+.playwright-cli/
+
+audio-patch-projects/
+models/
+output/
+tools/
+
+.DS_Store
+*.log
+.env
+.env.*
+samples/podcastfillers/episodes/
+samples/**/.DS_Store
