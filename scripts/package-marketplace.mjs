@@ -1,11 +1,13 @@
 #!/usr/bin/env node
-import { cp, mkdir, rm, writeFile } from 'node:fs/promises'
+import { cp, mkdir, readFile, rm, writeFile } from 'node:fs/promises'
 import { dirname, join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 const projectRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const outputRoot = resolve(process.argv[2] || join(projectRoot, 'build', 'soundcue-marketplace'))
 const pluginRoot = join(outputRoot, 'plugins', 'soundcue')
+const packageJson = JSON.parse(await readFile(join(projectRoot, 'package.json'), 'utf8'))
+const releaseTag = `v${packageJson.version}`
 
 const files = [
   '.mcp.json',
@@ -63,7 +65,14 @@ for (const sample of sampleFiles) {
 await writeFile(join(outputRoot, 'README.md'), [
   '# SoundCue Marketplace',
   '',
-  'Install locally:',
+  'Install the published release:',
+  '',
+  '```bash',
+  `codex plugin marketplace add superche/soundcue --ref ${releaseTag}`,
+  'codex plugin add soundcue@soundcue',
+  '```',
+  '',
+  'Install this local snapshot:',
   '',
   '```bash',
   `codex plugin marketplace add ${outputRoot}`,

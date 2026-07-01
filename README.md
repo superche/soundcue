@@ -36,15 +36,18 @@ http://127.0.0.1:43231/
 
 ## Install As A Codex Plugin
 
-Build a local marketplace snapshot:
+Install the released plugin:
 
 ```bash
-npm run package:marketplace
+codex plugin marketplace add superche/soundcue --ref v0.1.0
+codex plugin add soundcue@soundcue
 ```
 
-Install through the Codex plugin flow:
+For local development, build and install a local marketplace snapshot:
 
 ```bash
+npm install
+npm run package:marketplace
 codex plugin marketplace add ./build/soundcue-marketplace
 codex plugin add soundcue@soundcue
 ```
