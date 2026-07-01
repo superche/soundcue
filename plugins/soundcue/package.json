@@ -1,0 +1,30 @@
+{
+  "name": "soundcue-codex-plugin",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1 --port 43231",
+    "dev:local-stt": "node scripts/dev-with-stt.mjs local",
+    "dev:mock-stt": "node scripts/dev-with-stt.mjs mock",
+    "dev:openvoice": "node scripts/dev-with-stt.mjs local openvoice",
+    "stt:setup": "node scripts/setup-local-stt.mjs",
+    "stt:check": "node scripts/setup-local-stt.mjs --check",
+    "voice:setup": "node scripts/setup-openvoice.mjs",
+    "voice:check": "node scripts/setup-openvoice.mjs",
+    "test:smoke": "npm run build && node scripts/smoke-test.mjs",
+    "package:marketplace": "npm run build && node scripts/package-marketplace.mjs",
+    "verify:deliverable": "node scripts/verify-deliverable.mjs",
+    "build": "vite build",
+    "preview": "vite preview --host 127.0.0.1 --port 43231",
+    "start:mcp": "./scripts/start-mcp.sh"
+  },
+  "dependencies": {
+    "@vitejs/plugin-react": "^5.0.0",
+    "lucide-react": "^0.468.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "vite": "^7.0.0",
+    "wavesurfer.js": "^7.12.8"
+  }
+}

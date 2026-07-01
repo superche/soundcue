@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "audio_patch_mcp": {
+      "command": "bash",
+      "args": ["./scripts/start-mcp.sh"],
+      "cwd": "."
+    }
+  }
+}

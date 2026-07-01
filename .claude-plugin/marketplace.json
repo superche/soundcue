@@ -1,0 +1,18 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "soundcue",
+  "description": "SoundCue audio review and local derived-version editing plugin for Codex.",
+  "owner": {
+    "name": "Superche"
+  },
+  "plugins": [
+    {
+      "name": "soundcue",
+      "displayName": "SoundCue",
+      "description": "Review podcast or meeting audio with transcript-linked notes, local edit briefs, and derived audio versions.",
+      "source": "./plugins/soundcue",
+      "category": "productivity",
+      "tags": ["audio", "podcast", "transcript", "codex", "local-tools"]
+    }
+  ]
+}
